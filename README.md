@@ -3,7 +3,7 @@
 
 ## 修订历史
 
-[SDK版本更新日志](https://developers.ranfenghd.com/doc/pages/e8597f/)
+[SDK版本更新日志](http://adssp.ranfenghd.com/doc/pages/e8597f/)
 <div STYLE="page-break-after: always;"></div>
 
 
@@ -39,7 +39,6 @@
 
 ```ruby
 // 挑选在托管的平台导入项目，请不要导入全部，如果不清楚需要哪些平台可以咨询我们
-//重要‼️ 如需使用优量汇4.14.40及以上版本，请务必将sdk升级至ADRFMediationSDK 3.7.9.10303；
 
 pod 'ADRFMediationSDK','~> 3.7.9.10303' # 主SDK 必选
 pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/tianmu'     # 天目 必选
@@ -63,8 +62,6 @@ pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/baidu'      # 百度
     # 例如：
     
     pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/gdt-without'        # 优量汇(广点通）
-    
-        重要‼️ 如需使用优量汇4.14.40及以上版本，请务必将sdk升级至ADRFMediationSDK 3.7.9.10303及以上版本；
     
     ```
 
