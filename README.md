@@ -338,7 +338,7 @@ SKAdNetwork 是接收iOS端营销推广活动归因数据的一种方法。
 
 ```obj-c
 // ADRFMediationSDK 初始化, 需在主线程初始化(忽略提示)
-[ADRFMediationSDK initWithAppId:@"3283986" completionBlock:^(NSError * _Nonnull error) {
+[ADRFMediationSDK initWithAppId:@"3921856" completionBlock:^(NSError * _Nonnull error) {
     if (error) {
         NSLog(@"SDK 初始化失败：%@", error.localizedDescription);
     }
@@ -415,15 +415,15 @@ ADRFMediationSDK.enablePersonalAd = NO;
 **ADRFMediationSDKSplashAdDelegate**：开屏代理方法
 | <center>回调函数</center> | <center>回调说明</center>|
 |:-----------|:--------|
-| ADRFMediation_splashAdSuccessToLoadAd: | 开屏加载成功  |
-| ADRFMediation_splashAdSuccessToPresentScreen: | 开屏展示成功  |
-| ADRFMediation_splashAdFailToPresentScreen: | 开屏展示失败  |
-| ADRFMediation_splashAdEffective: | 开屏曝光  |
-| ADRFMediation_splashAdClicked: | 开屏点击  |
-| ADRFMediation_splashAdClosed: | 开屏关闭  |
-| ADRFMediation_splashAdCloseLandingPage: | 开屏关闭落地页  |
-| ADRFMediation_splashAdDidRewardEffective: info: | 开屏达到激励条件 （开启服务器验证后请使用服务端验证判断是否达到条件，无需使用本回调做激励达成判断）  |
-| ADRFMediation_splashAdDidRewardEffective: info: | 开屏达到激励条件 （开启服务器验证后请使用服务端验证判断是否达到条件，无需使用本回调做激励达成判断） 备注：仅支持优量汇平台 |
+| adrf_splashAdSuccessToLoadAd: | 开屏加载成功  |
+| adrf_splashAdSuccessToPresentScreen: | 开屏展示成功  |
+| adrf_splashAdFailToPresentScreen: | 开屏展示失败  |
+| adrf_splashAdEffective: | 开屏曝光  |
+| adrf_splashAdClicked: | 开屏点击  |
+| adrf_splashAdClosed: | 开屏关闭  |
+| adrf_splashAdCloseLandingPage: | 开屏关闭落地页  |
+| adrf_splashAdDidRewardEffective: info: | 开屏达到激励条件 （开启服务器验证后请使用服务端验证判断是否达到条件，无需使用本回调做激励达成判断）  |
+| adrf_splashAdDidRewardEffective: info: | 开屏达到激励条件 （开启服务器验证后请使用服务端验证判断是否达到条件，无需使用本回调做激励达成判断） 备注：仅支持优量汇平台 |
 
 ```obj-c
 特殊说明
@@ -456,7 +456,7 @@ OC请求开屏广告代码示例：
     self.splashAd.delegate = self;
     self.splashAd.controller = _window.rootViewController;
     // 2、设置开屏的广告位id
-    self.splashAd.posId = @"88d136b3d8c8da294e";
+    self.splashAd.posId = @"871fe19fe7df5b5c4b";
     /**
     开屏请求总超时时间:所有平台轮询的请求等待总时长（不包括图片渲染时间），单位秒，推荐设置为4s，最小值为3s
     开屏各平台分配逻辑:(目前只有开屏需要分配时间，并且理论上分配给到各平台的超时时间不会完全耗尽)
@@ -465,21 +465,14 @@ OC请求开屏广告代码示例：
     */
     self.splashAd.tolerateTimeout = 4;
     // 3、设置默认启动图(一般设置启动图的平铺颜色为背景颜色，使得视觉效果更加平滑)
-    self.splashAd.backgroundColor = [UIColor ADRFMediation_getColorWithImage:[UIImage imageNamed:@"750x1334.png"] withNewSize:[UIScreen mainScreen].bounds.size];
-    
+    self.splashAd.backgroundColor = [UIColor adrf_getColorWithImage:[UIImage imageNamed:@"750x1334.png"] withNewSize:[UIScreen mainScreen].bounds.size];
     // 4、开屏广告机型适配
-    CGFloat bottomViewHeight;
-    if (kADRFMediationCurveScreen) { // 刘海屏
-        bottomViewHeight = [UIScreen mainScreen].bounds.size.height * 0.15;
-    } else {
-        bottomViewHeight = [UIScreen mainScreen].bounds.size.height - [UIScreen mainScreen].bounds.size.width * (960 / 640.0);
-    }
-    
+    CGFloat bottomViewHeight = [UIScreen mainScreen].bounds.size.height * 0.15;    
     // 5、底部视图设置，非必选项
     UIView *bottomView = [[UIView alloc] init];
     bottomView.backgroundColor = [UIColor whiteColor];
     bottomView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, bottomViewHeight);
-    UIImageView *logoImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ADRFMediation_Logo.png"]];
+    UIImageView *logoImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"adrf_Logo.png"]];
     logoImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-135)/2, (bottomViewHeight-46)/2, 135, 46);
     [bottomView addSubview:logoImageView];
     
@@ -593,7 +586,7 @@ OC请求横幅广告请求示例：
     self.bannerView.delegate = self;
     // 2、设置控制器，用来弹出落地页，重要
     self.bannerView.controller = self;
-    // 3、设置广告位id，重要 测试可使用posId： 8caaf541ebc0f0b87e
+    // 3、设置广告位id，重要 测试可使用posId： 84aa0f60143e6ab18c
     self.bannerView.posId = posId;
     self.bannerView.refershTime = 30;
     // 4、可先展示再请求
@@ -621,7 +614,7 @@ OC请求横幅广告请求示例：
  @param errorModel 错误描述
  */
 - (void)adrf_bannerViewFailToReceived:(ADRFMediationSDKBannerAdView *)bannerView errorModel:(ADRFMediationAdapterErrorDefine *)errorModel{
-    NSLog(@"ADRFMediation_bannerViewFailToReceived:%@, %@",errorModel.errorDescription, errorModel.errorDetailDict);
+    NSLog(@"adrf_bannerViewFailToReceived:%@, %@",errorModel.errorDescription, errorModel.errorDetailDict);
     [_bannerView removeFromSuperview];
     _bannerView = nil;
 }
@@ -688,15 +681,15 @@ OC请求横幅广告请求示例：
 
 | <center>回调函数</center> | <center>回调说明</center>|
 |:-----------|:--------|
-| ADRFMediation_nativeAdSucessToLoad:adViewArray: | 信息流广告加载成功 |
-| ADRFMediation_nativeAdFailToLoad:errorModel | 信息流广告加载失败 |
-| ADRFMediation_nativeAdViewRenderOrRegistSuccess: | 信息流广告渲染成功 |
-| ADRFMediation_nativeAdViewRenderOrRegistFail: | 信息流广告渲染失败 |
-| ADRFMediation_nativeAdExposure:adView: | 信息流广告曝光 |
-| ADRFMediation_nativeAdClicked:adView: | 信息流广告点击 |
-| ADRFMediation_nativeAdClose:adView: | 信息流广告关闭 |
-| ADRFMediation_nativeAdCloseLandingPage:adView: | 信息流广告关闭落地页 |
-| ADRFMediation_nativeAd:adView:playerStatusChanged: | 视频类型信息流广告player 播放状态更新回调 |
+| adrf_nativeAdSucessToLoad:adViewArray: | 信息流广告加载成功 |
+| adrf_nativeAdFailToLoad:errorModel | 信息流广告加载失败 |
+| adrf_nativeAdViewRenderOrRegistSuccess: | 信息流广告渲染成功 |
+| adrf_nativeAdViewRenderOrRegistFail: | 信息流广告渲染失败 |
+| adrf_nativeAdExposure:adView: | 信息流广告曝光 |
+| adrf_nativeAdClicked:adView: | 信息流广告点击 |
+| adrf_nativeAdClose:adView: | 信息流广告关闭 |
+| adrf_nativeAdCloseLandingPage:adView: | 信息流广告关闭落地页 |
+| adrf_nativeAd:adView:playerStatusChanged: | 视频类型信息流广告player 播放状态更新回调 |
 
 
 Swift请求信息流广告代码示例：[[信息流广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/NativeAd/ADRFMediationNativeViewController.swift)
@@ -709,7 +702,7 @@ OC请求信息流广告请求示例：
 if(!_nativeAd) {
    // 1、信息流广告初始化 建议将高度设置为0；信息流会根据传入的宽度返回相应比例的高度
    _nativeAd = [[ADRFMediationSDKNativeAd alloc] initWithAdSize:CGSizeMake(self.tableView.frame.size.width, 0)];
-   // 2、传入posId，重要 测试可使用posId:0ee1184a15a310284e
+   // 2、传入posId，重要 测试可使用posId:28192b9c7146c94711
    _nativeAd.posId = self.posId;
    _nativeAd.delegate = self;
    _nativeAd.controller = self;
@@ -728,7 +721,7 @@ if(!_nativeAd) {
             [self setUpUnifiedNativeAdView:adView];
         }
         // 5、注册，自渲染：注册点击事件，模板：render，重要
-        [adView ADRFMediation_registViews:@[adView]];
+        [adView adrf_registViews:@[adView]];
     }
     
     [self.tableView.mj_header endRefreshing];
@@ -752,7 +745,7 @@ if(!_nativeAd) {
     for (id item in _items) {
         if(item == adView) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [adView ADRFMediation_unRegistView];
+                [adView adrf_unRegistView];
                 [self.items removeObject:adView];
                 [self.tableView reloadData];
             });
@@ -799,21 +792,21 @@ if(!_nativeAd) {
 
 | <center>回调函数</center> | <center>回调说明</center>|
 |:-----------|:--------|
-| ADRFMediation_rewardvodAdLoadSuccess: | 激励视频广告加载成功 |
-| ADRFMediation_rewardvodAdFailToLoad:errorModel: | 激励视频广告加载失败 |
-| ADRFMediation_rewardvodAdReadyToPlay: | 激励视频广告准备好播放 |
-| ADRFMediation_rewardvodAdPlaying:errorModel: | 激励视频广告播放时错误回调 |
-| ADRFMediation_rewardvodAdVideoLoadSuccess: | 视频数据下载成功回调，已经下载过的视频会直接回调 |
-| ADRFMediation_rewardvodAdWillVisible: | 激励视频广告播放页即将展示 |
-| ADRFMediation_rewardvodAdDidVisible: | 激励视频广告曝光 |
-| ADRFMediation_rewardvodAdDidRewardEffective: | 激励视频广告达到激励条件 |
-| ADRFMediation_rewardvodAdServerDidSucceed: | 激励视频服务验证成功（需等待服务器返回结果后判断是否激励生效） |
-| ADRFMediation_rewardvodAdServerDidSucceed:info: | 激励视频服务验证成功（需等待服务器返回结果后判断是否激励生效）,并携带服务验证三方返回的相关参数 |
-| ADRFMediation_rewardvodAdServerDidFailed:errorModel: | 激励视频服服务验证失败 |
-| ADRFMediation_rewardvodAdDidPlayFinish: | 激励视频广告播放完成 |
-| ADRFMediation_rewardvodAdDidClick: | 激励视频广告点击 |
-| ADRFMediation_rewardvodAdDidClose: | 激励视频广告关闭 |
-| ADRFMediation_rewardvodAdCloseLandingPage: | 激励视频广告关闭落地页 |
+| adrf_rewardvodAdLoadSuccess: | 激励视频广告加载成功 |
+| adrf_rewardvodAdFailToLoad:errorModel: | 激励视频广告加载失败 |
+| adrf_rewardvodAdReadyToPlay: | 激励视频广告准备好播放 |
+| adrf_rewardvodAdPlaying:errorModel: | 激励视频广告播放时错误回调 |
+| adrf_rewardvodAdVideoLoadSuccess: | 视频数据下载成功回调，已经下载过的视频会直接回调 |
+| adrf_rewardvodAdWillVisible: | 激励视频广告播放页即将展示 |
+| adrf_rewardvodAdDidVisible: | 激励视频广告曝光 |
+| adrf_rewardvodAdDidRewardEffective: | 激励视频广告达到激励条件 |
+| adrf_rewardvodAdServerDidSucceed: | 激励视频服务验证成功（需等待服务器返回结果后判断是否激励生效） |
+| adrf_rewardvodAdServerDidSucceed:info: | 激励视频服务验证成功（需等待服务器返回结果后判断是否激励生效）,并携带服务验证三方返回的相关参数 |
+| adrf_rewardvodAdServerDidFailed:errorModel: | 激励视频服服务验证失败 |
+| adrf_rewardvodAdDidPlayFinish: | 激励视频广告播放完成 |
+| adrf_rewardvodAdDidClick: | 激励视频广告点击 |
+| adrf_rewardvodAdDidClose: | 激励视频广告关闭 |
+| adrf_rewardvodAdCloseLandingPage: | 激励视频广告关闭落地页 |
 
 
 Swift请求激励视频代码示例：[[激励视频广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/RewardAd/ADRFMediationRewardViewController.swift)
@@ -829,7 +822,7 @@ OC请求激励视频代码示例：
     self.rewardvodAd.delegate = self;
     self.rewardvodAd.tolerateTimeout = 5;
     self.rewardvodAd.controller = self;
-    self.rewardvodAd.posId = @"a2b2644e75983ae44d";
+    self.rewardvodAd.posId = @"2efc799f75ce8980bc";
       // 以下参数如不需服务端验证可不传
       self.rewardvodAd.userId = @"xxx";
     self.rewardvodAd.extraInfo = @"这是一个激励视频生效验证";
@@ -929,14 +922,14 @@ OC请求激励视频代码示例：
 
 | <center>回调函数</center> | <center>回调说明</center>|
 |:-----------|:--------|
-| ADRFMediation_interstitialAdSuccedToLoad: | 插屏广告加载成功 |
-| ADRFMediation_interstitialAdFailedToLoad:error: | 插屏广告加载失败 |
-| ADRFMediation_interstitialAdDidPresent: | 插屏广告展示成功 |
-| ADRFMediation_interstitialAdFailedToPresent:error: | 插屏广告展示失败 |
-| ADRFMediation_interstitialAdExposure: | 插屏广告曝光 |
-| ADRFMediation_interstitialAdDidClick: | 插屏广告点击 |
-| ADRFMediation_interstitialAdDidClose: | 插屏广告关闭 |
-| ADRFMediation_interstitialAdCloseLandingPage: | 插屏广告关闭落地页 |
+| adrf_interstitialAdSuccedToLoad: | 插屏广告加载成功 |
+| adrf_interstitialAdFailedToLoad:error: | 插屏广告加载失败 |
+| adrf_interstitialAdDidPresent: | 插屏广告展示成功 |
+| adrf_interstitialAdFailedToPresent:error: | 插屏广告展示失败 |
+| adrf_interstitialAdExposure: | 插屏广告曝光 |
+| adrf_interstitialAdDidClick: | 插屏广告点击 |
+| adrf_interstitialAdDidClose: | 插屏广告关闭 |
+| adrf_interstitialAdCloseLandingPage: | 插屏广告关闭落地页 |
 
 
 Swift请求插屏代码示例：[[插屏广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/InterstitialAd/ADRFMediationInterstitialViewController.swift)
@@ -950,7 +943,7 @@ OC请求插屏代码示例：
     // 1、初始化插屏广告
     self.intertitialAd = [ADRFMediationSDKIntertitialAd new];
     self.intertitialAd.controller = self;
-    self.intertitialAd.posId = @"75dc0e44ed48bc2a62";
+    self.intertitialAd.posId = @"f063037fac3351dbcc";
     self.intertitialAd.delegate = self;
     self.intertitialAd.tolerateTimeout = 4;
     // 2、加载插屏广告
