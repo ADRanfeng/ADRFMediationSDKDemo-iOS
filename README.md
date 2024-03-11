@@ -25,7 +25,7 @@
 | Name         | 版本号      |  
 |--------------|-------------|           
 | ADRFMediationSDK | 3.7.9.10303 |    
-| rfads | 2.1.0.1.11271 |
+| ranfeng | 2.1.0.1.11271 |
 | tianmu | 2.1.0.1.11271 |    
 | baidu | 5.324.08141 |    
 | gdt | 4.14.45.08142 |    
@@ -42,7 +42,7 @@
 
 pod 'ADRFMediationSDK','~> 3.7.9.10303' # 主SDK 必选
 pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/tianmu'     # 天目 必选
-pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/rfads'      # 然峰Ads
+pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/ranfeng'    # 然峰Ads
 pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/gdt'        # 优量汇(广点通）
 pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/bu'         # 穿山甲(头条)
 pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/ks'         # 快手
@@ -70,59 +70,6 @@ pod 'ADRFMediationSDK/ADRFMediationSDKPlatforms/baidu'      # 百度
 
 <div STYLE="page-break-after: always;"></div>
 
-
-## 2.2 手动导入SDK方式
-
-[点击进入SDK下载地址](https://oss-saas-developer.oss-cn-beijing.aliyuncs.com/sdk_files/ADRFMediationSDK_iOS_37910303_744a8cfb490099ee0cf1bc9278df2880.zip)下载各SDK拖入到工程中
-
-若有KSAdSDK，打开项目的 app target，查看 General 中的 Frameworks, Libraries, and Embedded Content 选项，将KSAdSDK置为Embed & Sign
-
-若需要在模拟器运行，打开项目的 app target，查看 Build Settings选项，设置Excluded Architectures下的 Any iOS Simulator SDK 值为 arm64
-
-手动方式导入,需要添加如下依赖库:
-
-```obj-c
-AdSupport.framework
-CoreLocation.framework
-QuartzCore.framework
-SystemConfiguration.framework
-CoreTelephony.framework
-libz.tbd
-libc++.tbd
-libresolv.9.tbd
-WebKit.framework (Optional)
-libxml2.tbd
-Security.framework
-StoreKit.framework
-AVFoundation.framework
-CoreMedia.framework
-```
-
-头条还需要添加依赖库：
-
-```obj-c
-DeviceCheck.framework
-Accelerate.framework
-AudioToolbox.framework
-CoreGraphics.framework
-CoreImage.framework
-CoreMotion.framework
-CoreText.framework
-ImageIO.framework
-JavaScriptCore.framework
-MapKit.framework
-MediaPlayer.framework
-MobileCoreServices.framework
-UIKit.framework
-libbz2.tbd
-libiconv.tbd
-libsqlite3.tbd
-libc++abi.tbd
-```
-
-<div STYLE="page-break-after: always;"></div>
-
-<div STYLE="page-break-after: always;"></div>
 
 
 
@@ -385,9 +332,9 @@ ADRFMediationSDK.enablePersonalAd = NO;
 
 推荐在 `AppDelegate`的 `didFinishLaunchingWithOptions`方法的 `return YES`之前调用开屏。
 
-`OC请求开屏代码示例：`[[开屏代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-ios/blob/master/ADRFMediationSDKDemo-iOS/AppDelegate.m)
+`OC请求开屏代码示例：`[[开屏代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-iOS/blob/master/ADRFMediationSDKDemo-iOS/AppDelegate.m)
 
-`Swift请求开屏代码示例：`[[开屏代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/AppDelegate.swift)
+`Swift请求开屏代码示例：`[[开屏代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/AppDelegate.swift)
 
 **ADRFMediationSDKSplashAd**: 开屏广告的加载类
 | <center>属性</center> | <center>类型</center>  | <center>说明</center>|
@@ -436,7 +383,7 @@ ADRFMediationSDK.enablePersonalAd = NO;
 
 ```
 
-Swift请求开屏广告代码示例：[[开屏代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/AppDelegate.swift)
+Swift请求开屏广告代码示例：[[开屏代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/AppDelegate.swift)
 
 OC请求开屏广告代码示例：
 
@@ -472,7 +419,7 @@ OC请求开屏广告代码示例：
     UIView *bottomView = [[UIView alloc] init];
     bottomView.backgroundColor = [UIColor whiteColor];
     bottomView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, bottomViewHeight);
-    UIImageView *logoImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"adrf_Logo.png"]];
+    UIImageView *logoImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AdRFMediation_Logo.png"]];
     logoImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-135)/2, (bottomViewHeight-46)/2, 135, 46);
     [bottomView addSubview:logoImageView];
     
@@ -537,9 +484,9 @@ OC请求开屏广告代码示例：
 
 Banner广告(横幅广告)位于app顶部、中部、底部任意一处，横向贯穿整个app页面；当用户与app互动时，Banner广告会停留在屏幕上，并可在一段时间后自动刷新。
 
-`OC请求横幅代码示例：`[[横幅代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-ios/blob/master/ADRFMediationSDKDemo-iOS/RFMediationAds/BannerAd/ADRFMediationBannerViewController.m)
+`OC请求横幅代码示例：`[[横幅代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-iOS/blob/master/ADRFMediationSDKDemo-iOS/RFMediationAds/BannerAd/AdRFMediationBannerViewController.m)
 
-`Swift请求横幅代码示例：`[[横幅代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/BannerAd/ADRFMediationBannerViewController.swift)
+`Swift请求横幅代码示例：`[[横幅代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/RFMediationAds/BannerAd/AdRFMediationBannerViewController.swift)
 
 **ADRFMediationSDKBannerAdView**: 横幅广告的加载类
 
@@ -569,7 +516,7 @@ Banner广告(横幅广告)位于app顶部、中部、底部任意一处，横向
 | adrf_bannerViewClose: | 横幅广告关闭 |
 | adrf_bannerAdCloseLandingPage: | 横幅广告关闭落地页 |
 
-Swift请求横幅代码示例：[[横幅代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/BannerAd/ADRFMediationBannerViewController.swift)
+Swift请求横幅代码示例：[[横幅代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/RFMediationAds/BannerAd/AdRFMediationBannerViewController.swift)
 
 OC请求横幅广告请求示例：
 
@@ -654,9 +601,9 @@ OC请求横幅广告请求示例：
 
 信息流广告，具备自渲染和模板两种广告样式：自渲染是SDK将返回广告标题、描述、Icon、图片、多媒体视图等信息，开发者可通过自行拼装渲染成喜欢的样式；模板样式则是返回拼装好的广告视图，开发者只需将视图添加到相应容器即可，模板样式的容器高度建议是自适应。**请务必确保自渲染类型广告渲染时包含广告创意素材（至少包含一张图片）、平台logo、广告标识、关闭按钮；模板广告不得被遮挡。** **注意，信息流广告点击关闭时，开发者需要在- (void)adrf_nativeAdClose:回调中将广告视图隐藏或移除，避免如穿山甲渠道点击关闭后视图依旧存在问题**
 
-`OC请求信息流广告代码示例：`[[信息流广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-ios/blob/master/ADRFMediationSDKDemo-iOS/RFMediationAds/NativeAd/ADRFMediationNativeViewController.m)
+`OC请求信息流广告代码示例：`[[信息流广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-iOS/blob/master/ADRFMediationSDKDemo-iOS/RFMediationAds/NativeAd/AdRFMediationNativeViewController.m)
 
-`Swift请求信息流广告代码示例：`[[信息流广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/NativeAd/ADRFMediationNativeViewController.swift)
+`Swift请求信息流广告代码示例：`[[信息流广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/RFMediationAds/NativeAd/AdRFMediationNativeViewController.swift)
 
 **ADRFMediationSDKNativeAd**: 信息流广告的加载类
 
@@ -692,7 +639,7 @@ OC请求横幅广告请求示例：
 | adrf_nativeAd:adView:playerStatusChanged: | 视频类型信息流广告player 播放状态更新回调 |
 
 
-Swift请求信息流广告代码示例：[[信息流广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/NativeAd/ADRFMediationNativeViewController.swift)
+Swift请求信息流广告代码示例：[[信息流广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/RFMediationAds/NativeAd/AdRFMediationNativeViewController.swift)
 
 OC请求信息流广告请求示例：
 
@@ -761,9 +708,9 @@ if(!_nativeAd) {
 
 将短视频融入到APP场景当中，用户观看短视频广告后可以给予一些应用内奖励。常出现在游戏的复活、任务等位置，或者网服类APP的一些增值服务场景。
 
-`OC请求激励视频代码示例：`[[激励视频广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-ios/blob/master/ADRFMediationSDKDemo-iOS/RFMediationAds/RewardVodAd/ADRFMediationRewardvodViewController.m)
+`OC请求激励视频代码示例：`[[激励视频广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-iOS/blob/master/ADRFMediationSDKDemo-iOS/RFMediationAds/RewardVodAd/AdRFMediationRewardvodViewController.m)
 
-`Swift请求激励视频代码示例：`[[激励视频广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/RewardAd/ADRFMediationRewardViewController.swift)
+`Swift请求激励视频代码示例：`[[激励视频广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/RFMediationAds/RewardAd/AdRFMediationRewardViewController.swift)
 
 **ADRFMediationSDKRewardvodAd**: 激励视频广告的加载类
 
@@ -809,7 +756,7 @@ if(!_nativeAd) {
 | adrf_rewardvodAdCloseLandingPage: | 激励视频广告关闭落地页 |
 
 
-Swift请求激励视频代码示例：[[激励视频广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/RewardAd/ADRFMediationRewardViewController.swift)
+Swift请求激励视频代码示例：[[激励视频广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/RFMediationAds/RewardAd/AdRFMediationRewardViewController.swift)
 
 OC请求激励视频代码示例：
 
@@ -897,9 +844,9 @@ OC请求激励视频代码示例：
 
 <font color='red'>**注意：穿山甲插屏广告禁止App启动即请求，建议在首页控制器viewDidLoad方法中2~3s后请求展示，否则会有明显数据影响，将会存在约50%数据异常。** </font>
 
-`OC请求插屏广告代码示例：`[[插屏广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-ios/blob/master/ADRFMediationSDKDemo-iOS/RFMediationAds/InterstitialAd/ADRFMediationInterstitialViewController.m)
+`OC请求插屏广告代码示例：`[[插屏广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-iOS/blob/master/ADRFMediationSDKDemo-iOS/RFMediationAds/InterstitialAd/AdRFMediationInterstitialViewController.m)
 
-`Swift请求插屏广告代码示例：`[[插屏广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/InterstitialAd/ADRFMediationInterstitialViewController.swift)
+`Swift请求插屏广告代码示例：`[[插屏广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/RFMediationAds/InterstitialAd/AdRFMediationInterstitialViewController.swift)
 
 **ADRFMediationSDKIntertitialAd**: 插屏广告的加载类
 
@@ -932,7 +879,7 @@ OC请求激励视频代码示例：
 | adrf_interstitialAdCloseLandingPage: | 插屏广告关闭落地页 |
 
 
-Swift请求插屏代码示例：[[插屏广告代码示例]](https://github.com/ADRanfeng/adrfmediation-sdk-swift/blob/master/ADRFMediationSDKDemo-iOS-Swift/RFMediationAds/InterstitialAd/ADRFMediationInterstitialViewController.swift)
+Swift请求插屏代码示例：[[插屏广告代码示例]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift/blob/master/ADRFMediationSDKDemo-Swift/RFMediationAds/InterstitialAd/AdRFMediationInterstitialViewController.swift)
 
 OC请求插屏代码示例：
 
