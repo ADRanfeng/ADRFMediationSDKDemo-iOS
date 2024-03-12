@@ -16,8 +16,8 @@
 
 运行设备：iPhone （iPad上可能部分广告正常展示，但是存在填充很低或者平台不支持等问题，建议不要在iPad上展示广告，穿山甲等平台开屏广告iPad端展示异常）
 
-- `ADRFMediationSDK Objective-C Demo地址`[[ADRFMediationSDK Objective-C Demo]](https://github.com/ADRanfeng/adrfmediation-sdk-ios)
-- `ADRFMediationSDK Swift Demo地址`[[ADRFMediationSDK Swift Demo]](https://github.com/ADRanfeng/adrfmediation-sdk-swift)
+- `ADRFMediationSDK Objective-C Demo地址`[[ADRFMediationSDK Objective-C Demo]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-iOS)
+- `ADRFMediationSDK Swift Demo地址`[[ADRFMediationSDK Swift Demo]](https://github.com/ADRanfeng/ADRFMediationSDKDemo-Swift)
 
 
 
