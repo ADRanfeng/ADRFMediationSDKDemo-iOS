@@ -124,12 +124,6 @@
         _nativeAd.delegate = self;
         _nativeAd.controller = self;
         _nativeAd.posId = self.posId;
-        /**
-         接入说明：
-             1、原生信息流广告有两种形式,纯图原生和两文一图的小图原生
-             2、纯图原生广告类型templateType传1，两文一图的小图原生的原生广告类型templateType传4
-         */
-        _nativeAd.extryMap = @{@"templateType":@(1)};
         if (![[SetConfigManager sharedManager].nativeAdScenceId isEqualToString:@""]) {
             _nativeAd.scenesId = [SetConfigManager sharedManager].nativeAdScenceId;
         }
